@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React  from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -10,22 +10,47 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import './Formulario.css'
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Formulario = () =>  {
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
+
+  var navigate = useNavigate();
+  const handleSubmit = async (e) => {
+
+    const data = new FormData(e.currentTarget);
+    var datos = ({
       carnet: data.get('carnet'),
       nombre: data.get('nombre'),
       direccion: data.get('direccion'),
-      Genero: data.get('genero'),
-      tel : data.get('telefono'),
-      FechaNacimiento: data.get('techaNacimiento'),
+      genero: data.get('genero'),
+      telefono : data.get('telefono'),
+      fechaNacimiento: data.get('techaNacimiento'),
       carrera : data.get('carrera'),
       generoLiterario: data.get('generoLiterario'), 
-    }, data);
+    })
+
+    e.preventDefault();
+    axios
+      .post("http://formulario-poesia.herokuapp.com/api/newForm", datos)
+      .then((res) => {
+        console.log(res)
+        localStorage.setItem("identidad", res.data);
+        Swal.fire({
+          icon: "success",
+          title: "la fecha de declamacion sera el dia: " + res.data,
+          
+        }).then(navigate("/"));
+        
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: error.response.data.mensaje
+        });
+        console.log(error);
+      });
   };
   
   const [age, setAge] = React.useState('');
@@ -183,14 +208,13 @@ const Formulario = () =>  {
             type="submit"
             fullWidth
             variant="contained"
+            onSubmit={handleSubmit}
             sx={{ mt: 3, mb: 2 }}
           >
             Enviar
           </Button>
         </Box>
       </Box>
-      
-      
     </Container>
   );
 }
