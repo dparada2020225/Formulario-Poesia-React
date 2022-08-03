@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -32,8 +31,11 @@ const Formulario = () =>  {
     })
 
     e.preventDefault();
+    let heroku = "http://formulario-poesia.herokuapp.com"
+    //let local = "http://localhost:3200"
+    let funcion = "/api/newForm"
     axios
-      .post("http://formulario-poesia.herokuapp.com/api/newForm", datos)
+      .post(heroku+funcion, datos)
       .then((res) => {
         console.log(res)
         localStorage.setItem("identidad", res.data);
@@ -77,10 +79,8 @@ const Formulario = () =>  {
          
         }}
       >
-
-        
-
-        <Typography component="h1" variant="h2" sx={{ color: "#17365E ", textAlign: "center", fontSize: "25px", fontFamily: "Verdana", fontWeight: "bold" }}>
+        <img alt="usac" src="https://digi.usac.edu.gt/bvirtual/RESUMEN/uploads/5/3/9/8/5398194/411727_orig.png"/>
+        <Typography component="h1" variant="h2" sx={{ color: "#17365E ", textAlign: "center", fontSize: "25px", fontFamily: "Verdana", fontWeight: "bold" ,margin:"0px 0px 10px 0px"}}>
           Evento de poesía
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -218,7 +218,6 @@ const Formulario = () =>  {
     </Container>
   );
 }
-
 export default Formulario;
 
 

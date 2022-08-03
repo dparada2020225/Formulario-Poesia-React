@@ -1,9 +1,8 @@
 import React from 'react'
 import Formulario from "../Formulario/Formulario"
 import Reporte from "../Reporte/Reporte"
+import Reportes from "../ReporteOrdenados/ReporteOrdenados"
 import AppNav from "../Nav/Nav"
-
-
 
 import {
     Routes,
@@ -13,13 +12,12 @@ import {
 
 function Main(){
   return (
-    //<React.StrictMode>  </React.StrictMode> 
         <>
          <AppNav/>
-
             <Routes>
                 <Route path="/formulario" element={<Formulario /> } />
-                <Route path="/reporte" element={<Reporte /> } />
+                <Route path="/reporte%20general" element={<Reporte /> } />
+                <Route path="/reportes" element={<Reportes /> } />
                 <Route path="/" element={<Navigate to="/formulario" replace />} />
             </Routes>
         </>

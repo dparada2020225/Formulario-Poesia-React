@@ -10,10 +10,6 @@ import Paper from '@mui/material/Paper';
 import axios from "axios";
 import { useEffect, useState } from 'react';
 
-
-
-
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: '#03a9f4',
@@ -34,34 +30,26 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-
-
-
-
-export default function CustomizedTables() {
+export default function ReporteGeneral() {
    
     const [persona, setPersona] = useState([])
     useEffect(() => {
+      let heroku = "http://formulario-poesia.herokuapp.com"
+      //let local = "http://localhost:3200"
       let funcion = "/api/VerFormularios"
       axios
-        .get("http://formulario-poesia.herokuapp.com"+funcion)
+        .get(heroku+funcion)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setPersona(res.data)
         })
         .then()
         .catch((error) => {
-          console.log(error.response.data);
-         
+          console.log(error.response.data); 
         });    
     }, [])
 
-    // const rows =[persona.map((row, index) => (
-    //   {nombre: row.nombre , carnet: row.carnet, direccion: row.direccion, genero: row.genero,telefono: row.telefono , generoLiterario: row.generoLiterario, fechaInscripcion: row.fechaInscripcion, edad: row.edad , fechaDeclamacion: row.fechaDeclamacion }   
-    //   ))] ;
     
-    
-    console.log(persona)
   return (
     <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -97,6 +85,7 @@ export default function CustomizedTables() {
         </TableBody> 
       </Table>
     </TableContainer>
+  
 
   );
 }

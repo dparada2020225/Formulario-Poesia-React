@@ -13,7 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import "./Nav.css"
 import { Link } from "react-router-dom";
 
-const pages = ['Formulario', 'Reporte'];
+const pages = ['Formulario', 'Reporte general', 'Reportes'];
 
 const AppNav = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -27,7 +27,7 @@ const AppNav = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{margin:"0px 0px 30px 0px"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Avatar alt="usac" src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Usac_logo.png"  sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
