@@ -7,7 +7,7 @@ export default function ReportesOrdenados() {
    
     const [persona, setPersona] = useState([])
     useEffect(() => {
-      let heroku = "http://formulario-poesia.herokuapp.com"
+      let heroku = "https://formulario-poesia.herokuapp.com"
       //let local = "http://localhost:3200"
       let funcion = "/api/VerFormularios"
       axios
